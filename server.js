@@ -119,7 +119,7 @@ async function scrapeKambista(browser) {
     // Navegar a Kambista
     await page.goto('https://kambista.com/', {
       waitUntil: 'domcontentloaded',
-      timeout: 20000
+      timeout: 60000  // Aumentado para Render
     });
 
     // Espera mínima - las tasas están en HTML inicial
@@ -363,7 +363,7 @@ async function scrapeRextie(browser) {
     // Navegar a Rextie
     await page.goto('https://www.rextie.com/', {
       waitUntil: 'domcontentloaded',
-      timeout: 20000
+      timeout: 60000  // Aumentado para Render
     });
 
     // Espera mínima - tasas en HTML inicial
@@ -493,10 +493,10 @@ async function scrapeTucambista(browser) {
     await page.setViewport({ width: 1920, height: 1080 });
 
     // Navegar con timeout muy largo
-    console.log('🌐 Navegando a Tucambista (puede tardar hasta 90 segundos)...');
+    console.log('🌐 Navegando a Tucambista (puede tardar hasta 2 minutos)...');
     await page.goto('https://tucambista.pe/', {
-      waitUntil: 'networkidle0',  // Esperar a que la red esté completamente inactiva
-      timeout: 90000  // 90 segundos
+      waitUntil: 'domcontentloaded',  // Cambiado para ser más rápido en Render
+      timeout: 120000  // 120 segundos (2 minutos)
     });
 
     console.log('⏳ Esperando 8 segundos para que carguen datos...');
@@ -571,7 +571,7 @@ async function scrapeTkambio(browser) {
     // Navegar a Tkambio
     await page.goto('https://tkambio.com/', {
       waitUntil: 'domcontentloaded',
-      timeout: 20000
+      timeout: 60000  // Aumentado para Render
     });
 
     // Espera para JavaScript dinámico
@@ -850,8 +850,8 @@ async function scrapeBloomberg(browser) {
 
     // Navegar a Bloomberg Línea
     await page.goto('https://www.bloomberglinea.com/quote/USDPEN:CUR/', {
-      waitUntil: 'networkidle2',
-      timeout: 30000
+      waitUntil: 'domcontentloaded',  // Cambiado para ser más rápido
+      timeout: 90000  // Aumentado para Render
     });
 
     // Esperar a que cargue el contenido dinámico
@@ -954,8 +954,8 @@ async function scrapeWesternUnion(browser) {
 
     // Navegar a Western Union Peru
     await page.goto('https://www.westernunionperu.pe/cambiodemoneda', {
-      waitUntil: 'networkidle2',
-      timeout: 30000
+      waitUntil: 'domcontentloaded',  // Cambiado para ser más rápido
+      timeout: 90000  // Aumentado para Render
     });
 
     // Esperar a que cargue el contenido dinámico
@@ -1039,7 +1039,7 @@ async function scrapeExchangeRates(retryCount = 0, maxRetries = 3) {
         '--disable-accelerated-2d-canvas',
         '--disable-gpu'
       ],
-      timeout: 30000
+      timeout: 90000  // Aumentado para Render
     });
 
     // Sistema de carga progresiva - cada fuente es independiente
