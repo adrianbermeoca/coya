@@ -21,6 +21,9 @@ const db = new ExchangeRateDB(process.env.DB_PATH);
 // SECURITY MIDDLEWARE
 // ============================================
 
+// 0. Trust proxy - Necesario para Render.com y rate limiting
+app.set('trust proxy', 1);
+
 // 1. Helmet - Security headers
 app.use(helmet({
   contentSecurityPolicy: {

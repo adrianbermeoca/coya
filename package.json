@@ -4,6 +4,7 @@
   "description": "Comparador de tasas de cambio en tiempo real - COYA",
   "main": "server.js",
   "scripts": {
+    "postinstall": "npx puppeteer browsers install chrome",
     "start": "cross-env NODE_ENV=production node server.js",
     "dev": "cross-env NODE_ENV=development VERBOSE_LOGGING=true node server.js",
     "prod": "cross-env NODE_ENV=production node server.js",
