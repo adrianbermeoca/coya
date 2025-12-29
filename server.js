@@ -1442,7 +1442,26 @@ app.use((err, req, res, next) => {
 // INICIALIZACIÓN DEL SERVIDOR
 // ============================================
 
+// Función para asegurar que Chrome está instalado (para Render.com)
+async function ensureChromeInstalled() {
+  try {
+    console.log('🔍 Verificando instalación de Chrome...');
+    const { execSync } = require('child_process');
+    execSync('npx puppeteer browsers install chrome', {
+      stdio: 'inherit',
+      timeout: 60000
+    });
+    console.log('✅ Chrome verificado/instalado correctamente');
+  } catch (error) {
+    console.log('⚠️  Advertencia al verificar Chrome:', error.message);
+    // Continuar de todos modos, Puppeteer podría encontrar Chrome
+  }
+}
+
 async function startServer() {
+  // Asegurar que Chrome está instalado (crítico para Render.com)
+  await ensureChromeInstalled();
+
   console.log('🔄 Haciendo scraping inicial antes de iniciar el servidor...');
 
   // Hacer scraping inicial ANTES de que el servidor acepte requests
