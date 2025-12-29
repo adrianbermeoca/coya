@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coya - Tasas de Cambio Corporativas</title>
+    <meta name="description" content="Plataforma profesional de comparación de tasas de cambio USD/PEN en tiempo real">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Elegant Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Toggle Button -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
+            <svg viewBox="0 0 24 24" fill="none" class="toggle-icon">
+                <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <!-- Logo Section -->
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="20"/>
+                    <path d="M24 10V24L32 28" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="24" cy="24" r="2" fill="#ffffff"/>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-title">COYA</span>
+                    <span class="logo-subtitle">Financial Exchange</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Today's Info Widget -->
+        <div class="today-widget">
+            <div class="today-header">
+                <svg viewBox="0 0 24 24" fill="none" class="today-icon">
+                    <rect x="3" y="4" width="18" height="18" rx="2"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                    <line x1="8" y1="2" x2="8" y2="6" stroke-linecap="round"/>
+                    <line x1="16" y1="2" x2="16" y2="6" stroke-linecap="round"/>
+                </svg>
+                <span class="today-label">Hoy</span>
+            </div>
+            <div class="today-content">
+                <div class="today-date" id="todayDate">28 de Diciembre</div>
+                <div class="today-time" id="todayTime">00:00:00</div>
+                <div class="today-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Proveedores</span>
+                        <span class="stat-value" id="providerCount">6</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-label">Actualizado</span>
+                        <span class="stat-value" id="lastUpdateTime">Ahora</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+            <div class="nav-section-label">NAVEGACIÓN</div>
+
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <span class="nav-text">Dashboard</span>
+                <div class="nav-indicator"></div>
+            </a>
+
+            <a href="#calculator" class="nav-item" data-section="calculator">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="8" cy="10" r="1" fill="currentColor"/>
+                    <circle cx="12" cy="10" r="1" fill="currentColor"/>
+                    <circle cx="16" cy="10" r="1" fill="currentColor"/>
+                    <circle cx="8" cy="14" r="1" fill="currentColor"/>
+                    <circle cx="12" cy="14" r="1" fill="currentColor"/>
+                    <circle cx="16" cy="14" r="1" fill="currentColor"/>
+                    <circle cx="8" cy="18" r="1" fill="currentColor"/>
+                    <rect x="11" y="17" width="5" height="2" rx="1" fill="currentColor"/>
+                </svg>
+                <span class="nav-text">Calculadora</span>
+                <div class="nav-indicator"></div>
+            </a>
+
+            <a href="#rates" class="nav-item" data-section="rates">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+                    <polyline points="3 17 9 11 13 15 21 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <polyline points="16 7 21 7 21 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                <span class="nav-text">Análisis</span>
+                <div class="nav-indicator"></div>
+            </a>
+
+            <a href="#history" class="nav-item" data-section="history">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="nav-text">Histórico</span>
+                <div class="nav-indicator"></div>
+            </a>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <div class="status-widget">
+                <div class="status-indicator">
+                    <div class="status-dot pulse"></div>
+                    <span class="status-text">Sistema Activo</span>
+                </div>
+                <div class="update-info">
+                    <svg viewBox="0 0 24 24" fill="none" class="update-icon">
+                        <path d="M1 4V10H7M23 20V14H17M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14L18.36 18.36A9 9 0 0 1 3.51 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span id="lastUpdateSidebar">Actualizando...</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <h1 class="page-title">Tasas de Cambio USD/PEN</h1>
+                <p class="page-subtitle">Comparación en tiempo real</p>
+            </div>
+            <div class="top-bar-right">
+                <button class="btn-refresh" id="refreshBtn">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M1 4V10H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23 20V14H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Actualizar</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- KPI Cards -->
+        <section class="kpi-section">
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-label">Mejor Tasa Compra</span>
+                    <svg class="kpi-icon success" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5V19M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-value" id="bestBuyRate">--.---</div>
+                <div class="kpi-provider" id="bestBuyProvider">Cargando...</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-label">Mejor Tasa Venta</span>
+                    <svg class="kpi-icon warning" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 19V5M5 12L12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-value" id="bestSellRate">--.---</div>
+                <div class="kpi-provider" id="bestSellProvider">Cargando...</div>
+            </div>
+
+            <div class="kpi-card kpi-dynamic" id="savingsKpi">
+                <div class="kpi-header">
+                    <span class="kpi-label">Ahorro Potencial</span>
+                    <svg class="kpi-icon info" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-value" id="savingsValue">S/ 0.00</div>
+                <div class="kpi-provider" id="savingsContext">Por cada USD 1,000</div>
+                <div class="kpi-dynamic-indicator">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Vinculado a calculadora</span>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-label">Diferencial Promedio</span>
+                    <svg class="kpi-icon neutral" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 12H3M21 6H3M21 18H3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-value" id="avgSpread">--.---</div>
+                <div class="kpi-provider">Diferencia promedio</div>
+            </div>
+        </section>
+
+        <!-- Info Widgets Section -->
+        <section class="info-section">
+            <div class="info-widgets-horizontal">
+                <!-- Quick Stats -->
+                <div class="info-widget-compact">
+                    <div class="widget-header-compact">
+                        <svg viewBox="0 0 24 24" fill="none" class="widget-icon-compact">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="widget-title-compact">Resumen</span>
+                    </div>
+                    <div class="widget-content-compact">
+                        <div class="compact-stat">
+                            <span class="compact-label">Proveedores</span>
+                            <span class="compact-value" id="widgetProviderCount">6</span>
+                        </div>
+                        <div class="compact-stat">
+                            <span class="compact-label">Actualizado</span>
+                            <span class="compact-value" id="widgetLastUpdate">Ahora</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Best Opportunities -->
+                <div class="info-widget-compact">
+                    <div class="widget-header-compact">
+                        <svg viewBox="0 0 24 24" fill="none" class="widget-icon-compact">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span class="widget-title-compact">Oportunidades</span>
+                    </div>
+                    <div class="widget-content-compact">
+                        <div class="compact-opp">
+                            <span class="compact-opp-label">Comprar</span>
+                            <div class="compact-opp-value" id="widgetBestBuyCompact">
+                                <span class="compact-opp-provider">-</span>
+                                <span class="compact-opp-rate">-</span>
+                            </div>
+                        </div>
+                        <div class="compact-opp">
+                            <span class="compact-opp-label">Vender</span>
+                            <div class="compact-opp-value" id="widgetBestSellCompact">
+                                <span class="compact-opp-provider">-</span>
+                                <span class="compact-opp-rate">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spread Info -->
+                <div class="info-widget-compact">
+                    <div class="widget-header-compact">
+                        <svg viewBox="0 0 24 24" fill="none" class="widget-icon-compact">
+                            <path d="M3 3V21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M7 16L12 11L16 15L21 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span class="widget-title-compact">Spread</span>
+                    </div>
+                    <div class="widget-content-compact">
+                        <div class="compact-stat">
+                            <span class="compact-label">Promedio</span>
+                            <span class="compact-value" id="widgetAvgSpreadCompact">-</span>
+                        </div>
+                        <div class="compact-stat">
+                            <span class="compact-label">Rango</span>
+                            <span class="compact-value" id="widgetRangeCompact">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section class="calculator-section">
+            <div class="section-card">
+                    <div class="card-header">
+                        <div>
+                            <h2 class="card-title">Calculadora</h2>
+                            <p class="card-subtitle">Simula tu cambio</p>
+                        </div>
+                    </div>
+
+                    <div class="calculator-body">
+                    <!-- Tabs -->
+                    <div class="calc-tabs">
+                        <button class="calc-tab active" data-action="buy">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M3 3H21L18 9H6L3 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M6 9L8 21H16L18 9" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Comprar USD</span>
+                        </button>
+                        <button class="calc-tab" data-action="sell">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Vender USD</span>
+                        </button>
+                    </div>
+
+                    <!-- Input -->
+                    <div class="calc-input-section">
+                        <div class="input-group">
+                            <label class="input-label">Monto a cambiar</label>
+                            <div class="input-wrapper">
+                                <span class="input-currency" id="inputCurrency">PEN</span>
+                                <input type="number" id="calcAmount" class="calc-input" value="1000" placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <div class="exchange-arrow">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">Recibirás</label>
+                            <div class="input-wrapper result">
+                                <span class="input-currency" id="outputCurrency">USD</span>
+                                <input type="text" id="calcResult" class="calc-input" readonly placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="calc-results">
+                        <div class="result-row best">
+                            <div class="result-row-header">
+                                <svg viewBox="0 0 24 24" fill="none" class="result-icon success">
+                                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="result-label">Mejor opción:</span>
+                            </div>
+                            <div class="result-details">
+                                <span class="result-provider" id="bestProvider">-</span>
+                                <span class="result-rate" id="appliedRate">-</span>
+                            </div>
+                        </div>
+
+                        <div class="result-row worst">
+                            <div class="result-row-header">
+                                <svg viewBox="0 0 24 24" fill="none" class="result-icon warning">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 8V12M12 16H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <span class="result-label">Peor opción:</span>
+                            </div>
+                            <div class="result-details">
+                                <span class="result-provider" id="worstProvider">-</span>
+                                <span class="result-rate" id="worstRate">-</span>
+                            </div>
+                        </div>
+
+                        <div class="result-divider"></div>
+
+                        <div class="result-row highlight savings">
+                            <div class="result-row-header">
+                                <svg viewBox="0 0 24 24" fill="none" class="result-icon success">
+                                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="result-label">Tu ahorro eligiendo la mejor:</span>
+                            </div>
+                            <div class="result-value-large success" id="savingsAmount">S/ 0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rates Table -->
+        <section class="rates-section">
+            <div class="section-card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">
+                            Todas las Casas de Cambio
+                            <span class="provider-count-badge" id="providerCountBadge">0</span>
+                        </h2>
+                        <p class="card-subtitle" id="tableSubtitle">Compara todas las opciones disponibles</p>
+                    </div>
+                    <div class="header-controls">
+                        <div class="filter-controls">
+                            <button class="filter-btn active" data-sort="default">Todas</button>
+                            <button class="filter-btn" data-sort="buy">Mejor Compra</button>
+                            <button class="filter-btn" data-sort="sell">Mejor Venta</button>
+                        </div>
+                        <button class="btn-export" id="exportCsvBtn" title="Exportar a CSV">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="7 10 12 15 17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Exportar CSV</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div class="loading-state" id="loadingState">
+                    <div class="spinner"></div>
+                    <p>Cargando tasas de cambio...</p>
+                </div>
+
+                <!-- Error State -->
+                <div class="error-state" id="errorState" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 8V12M12 16H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <p>Error al cargar las tasas de cambio</p>
+                    <button class="btn-retry" onclick="loadRates()">Reintentar</button>
+                </div>
+
+                <!-- Rates Table -->
+                <div class="rates-table-container" id="ratesTable" style="display: none;">
+                    <table class="rates-table">
+                        <thead>
+                            <tr>
+                                <th>Casa de Cambio</th>
+                                <th>Compra</th>
+                                <th>Venta</th>
+                                <th>Diferencial</th>
+                                <th>Costo vs Mejor</th>
+                                <th>Actualizado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historical Chart Section -->
+        <section class="history-section">
+            <div class="section-card">
+                <!-- Header with controls -->
+                <div class="card-header">
+                    <div class="header-left">
+                        <h2 class="card-title">
+                            <svg viewBox="0 0 24 24" fill="none" class="title-icon">
+                                <path d="M3 3V21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 14L12 9L16 13L21 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Análisis Histórico
+                        </h2>
+                        <p class="card-subtitle" id="historySubtitle">Evolución de las tasas en las últimas 24 horas</p>
+                    </div>
+                    <div class="header-right">
+                        <!-- Period filters -->
+                        <div class="filter-group">
+                            <button class="filter-btn active" data-period="24">24h</button>
+                            <button class="filter-btn" data-period="72">3 días</button>
+                            <button class="filter-btn" data-period="168">7 días</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Tools Bar -->
+                <div class="chart-tools-bar">
+                    <div class="tools-left">
+                        <!-- View type selector -->
+                        <div class="tool-group">
+                            <label class="tool-label">Vista:</label>
+                            <button class="tool-btn active" data-view="both" title="Mostrar compra y venta">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <span>Ambas</span>
+                            </button>
+                            <button class="tool-btn" data-view="buy" title="Solo compra">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 5V19M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>Compra</span>
+                            </button>
+                            <button class="tool-btn" data-view="sell" title="Solo venta">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 19V5M5 12L12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>Venta</span>
+                            </button>
+                        </div>
+
+                        <!-- Chart type selector -->
+                        <div class="tool-group">
+                            <label class="tool-label">Tipo:</label>
+                            <button class="tool-btn active" data-chart-type="line" title="Gráfico de líneas">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <polyline points="3 17 9 11 13 15 21 7" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </button>
+                            <button class="tool-btn" data-chart-type="area" title="Gráfico de área">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M3 17L9 11L13 15L21 7V21H3V17Z" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.2"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tools-right">
+                        <!-- Action buttons -->
+                        <button class="tool-btn-icon" id="exportChartBtn" title="Exportar gráfico">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="7 10 12 15 17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="tool-btn-icon" id="resetChartBtn" title="Resetear zoom">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M1 4V10H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M23 20V14H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14L18.36 18.36A9 9 0 0 1 3.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="tool-btn-icon" id="fullscreenChartBtn" title="Pantalla completa">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M8 3H5C3.89543 3 3 3.89543 3 5V8M21 8V5C21 3.89543 20.1046 3 19 3H16M16 21H19C20.1046 21 21 20.1046 21 19V16M3 16V19C3 20.1046 3.89543 21 5 21H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Custom HTML Legend Container - Outside chart for better organization -->
+                <div id="chartLegendContainer" class="chart-legend-container-external"></div>
+
+                <!-- Chart container with loading state -->
+                <div class="chart-wrapper">
+                    <div class="chart-loading" id="chartLoading">
+                        <div class="spinner"></div>
+                        <p>Cargando datos históricos...</p>
+                    </div>
+                    <div class="chart-container" id="chartContainer" style="display: none;">
+                        <canvas id="ratesChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Summary Stats Bar -->
+                <div class="summary-stats-bar" id="summaryStats">
+                    <!-- Will be populated dynamically -->
+                </div>
+
+                <!-- Provider Stats Grid -->
+                <div class="stats-header">
+                    <h3 class="stats-title">Estadísticas Detalladas por Proveedor</h3>
+                    <div class="stats-sort">
+                        <label>Ordenar por:</label>
+                        <select id="statsSortSelect" class="stats-select">
+                            <option value="name">Nombre</option>
+                            <option value="avg-buy">Mejor Compra</option>
+                            <option value="avg-sell">Mejor Venta</option>
+                            <option value="spread">Menor Spread</option>
+                            <option value="volatility">Volatilidad</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="provider-stats-grid" id="providerStats">
+                    <!-- Stats cards will be inserted here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

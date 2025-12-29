@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: coya
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3006
+      - key: VERBOSE_LOGGING
+        value: false
+      - key: SCRAPE_INTERVAL_MINUTES
+        value: 10
+      - key: PUPPETEER_HEADLESS
+        value: true
+      - key: DB_PATH
+        value: ./data/exchange_rates.db
+    autoDeploy: true
+    healthCheckPath: /api/rates

@@ -1,0 +1,49 @@
+# Dependencias
+node_modules/
+package-lock.json
+
+# Variables de entorno
+.env
+.env.local
+.env.production
+
+# Base de datos
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos temporales
+tmp/
+temp/
+*.tmp
+
+# Build
+dist/
+build/
+
+# Puppeteer
+.local-chromium/
+
+# Archivos de prueba y debug
+test-*.js
+debug-*.js

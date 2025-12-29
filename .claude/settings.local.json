@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:cuantoestaeldolar.pe)",
+      "Bash(npm install:*)",
+      "Bash(dir \"C:\\\\Users\\\\adria\\\\.gemini\\\\antigravity\\\\scratch\\\\coya\" /B /D)",
+      "Bash(dir:*)",
+      "Bash(node debug-scraper.js:*)",
+      "WebFetch(domain:kambista.com)",
+      "Bash(node debug-kambista.js:*)",
+      "WebFetch(domain:tkambio.com)",
+      "WebFetch(domain:tucambista.pe)",
+      "WebFetch(domain:www.rextie.com)",
+      "WebFetch(domain:e-consulta.sunat.gob.pe)",
+      "WebFetch(domain:bancaporinternet.bn.com.pe)",
+      "Bash(node debug-all-sources.js:*)",
+      "Bash(npm start)",
+      "Bash(timeout 90 tail:*)",
+      "Bash(cat:*)",
+      "Bash(node test-sunat-selenium.js:*)",
+      "Bash(node test-sunat-methods.js:*)",
+      "Bash(curl:*)",
+      "Bash(start http://localhost:3006)",
+      "Bash(python:*)",
+      "WebFetch(domain:www.bloomberglinea.com)",
+      "Bash(node debug-bloomberg.js:*)",
+      "Bash(node test-bloomberg.js:*)",
+      "Bash(timeout 15 tail:*)",
+      "Bash(ls:*)",
+      "Bash(node debug-westernunion.js:*)"
+    ]
+  }
+}

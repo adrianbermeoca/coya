@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  coya:
+    build: .
+    container_name: coya-app
+    restart: unless-stopped
+    ports:
+      - "3006:3006"
+    environment:
+      - NODE_ENV=production
+      - PORT=3006
+      - VERBOSE_LOGGING=false
+      - SCRAPE_INTERVAL_MINUTES=10
+      - PUPPETEER_HEADLESS=true
+      - DB_PATH=/app/data/exchange_rates.db
+    volumes:
+      # Persistir base de datos
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3006/api/rates"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
