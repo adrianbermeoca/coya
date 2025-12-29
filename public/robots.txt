@@ -1,0 +1,17 @@
+# robots.txt para COYA - Comparador de Tasas de Cambio
+# Permite que todos los bots indexen el sitio
+
+User-agent: *
+Allow: /
+Allow: /api/rates
+Allow: /api/health
+
+# Bloquear endpoints sensibles
+Disallow: /api/refresh
+Disallow: /api/admin
+
+# Sitemap
+Sitemap: https://coya.onrender.com/sitemap.xml
+
+# Crawl delay para no sobrecargar el servidor
+Crawl-delay: 5
